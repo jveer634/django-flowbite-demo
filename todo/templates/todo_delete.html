@@ -1,0 +1,9 @@
+<h2>Delete Todo {{todo.id}}</h2>
+<form>
+    {% csrf_token %} {{form.as_p}}
+
+    <input type="submit" value="Delete" />
+    <a type="button" value="Cancel" href='{% url "todo:detail" todo.id %}'
+        >Cancel</a
+    >
+</form>
