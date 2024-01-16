@@ -1,9 +1,4 @@
-/**
- * This is a minimal config.
- *
- * If you need the full config, get it from here:
- * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
- */
+const colors = require("tailwindcss/colors");
 
 module.exports = {
     content: [
@@ -24,6 +19,7 @@ module.exports = {
          * Templates in other django apps (BASE_DIR/<any_app_name>/templates).
          * Adjust the following line to match your project structure.
          */
+        "../../**/templates/*.html",
         "../../**/templates/**/*.html",
 
         /**
@@ -45,7 +41,14 @@ module.exports = {
         "./node_modules/flowbite/**/*.js",
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                primary: {
+                    DEFAULT: colors.green["600"],
+                    hover: colors.green["800"],
+                },
+            },
+        },
     },
     plugins: [
         /**
