@@ -1,6 +1,6 @@
-<h2>Delete Todo {{todo.id}}</h2>
+<h2>Update Todo {{todo.id}}</h2>
 <form method="POST">
-    {% csrf_token %} {{form.as_p}}
+    {{form.as_p}} {% csrf_token %}
 
     <input type="submit" value="Delete" />
     <a type="button" value="Cancel" href='{% url "todo:detail" todo.id %}'
