@@ -1,5 +1,107 @@
-{% for todo in object_list %}
+{% extends "base.html" %} {% block content %}
 
-<p>{{todo.title}}</p>
+<div class="p-16 rounded-lg shadow-md bg-gray-200 mb-16 space-y-4 text-center">
+    <h1
+        class="mb-4 text-4xl font-bold leading-none tracking-tight text-primary md:text-5xl lg:text-6xl"
+    >
+        Django Flowbite Project
+    </h1>
+    <p
+        class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48"
+    >
+        This is a todo list project built using django, tailwind and flowbite
+        components.
+    </p>
+</div>
 
-{% endfor %}
+<div
+    class="p-4 bg-neutral-200 rounded-md text-center tracking-wider font-bold text-primary text-xl"
+>
+    TODO LIST
+</div>
+
+{% comment %} TODO: Implementation of search and filters {% endcomment %}
+
+<form class="my-6">
+    <label
+        for="default-search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+        >Search</label
+    >
+    <div class="relative">
+        <div
+            class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+        >
+            <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+            </svg>
+        </div>
+        <input
+            type="search"
+            id="default-search"
+            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search todos..."
+            required
+        />
+        <button
+            type="submit"
+            class="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-primary-hover focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2"
+        >
+            Search
+        </button>
+    </div>
+</form>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for todo in object_list %}
+
+    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+        <a href="{{todo.get_absolute_url}}">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                {{todo.title}}
+            </h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700">
+            {{todo.content | truncatechars:100}}
+        </p>
+        <a
+            href="{{todo.get_absolute_url}}"
+            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primary-hover focus:ring-4 focus:outline-none focus:ring-green-300"
+        >
+            Read more
+            <svg
+                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+            >
+                <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                />
+            </svg>
+        </a>
+    </div>
+
+    {% empty %}
+    <li>No articles yet.</li>
+
+    {% endfor %}
+</div>
+{% endblock content %}
