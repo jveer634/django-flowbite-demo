@@ -1,9 +1,40 @@
-<h2>Delete Todo {{todo.id}}</h2>
-<form method="POST">
-    {{form.as_p}} {% csrf_token %}
+{% extends "base.html" %} {% block content %}
+<div class="w-11/12 max-w-lg mx-auto">
+    <div class="p-10 text-center space-y-4">
+        <h2 class="text-4xl font-bold text-primary">Add Todo</h2>
+        <h4>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Consequuntur porro officiis dicta ipsa tenetur aliquid laborum,
+            expedita, necessitatibus dolore voluptates enim sapiente doloribus
+            suscipit itaque unde, optio cum excepturi similique.
+        </h4>
+    </div>
+    <form method="POST">
+        {% csrf_token %} {% for field in form %}
+        <div class="mb-5">
+            <label
+                for="{{ field.id_for_label}}"
+                class="block mb-2 text-sm font-medium text-gray-900"
+                >{{field.label}}</label
+            >
+            {{field}}
+        </div>
 
-    <input type="submit" value="Delete" />
-    <a type="button" value="Cancel" href='{% url "todo:detail" todo.id %}'
-        >Cancel</a
-    >
-</form>
+        {% endfor %}
+
+        <input
+            type="submit"
+            value="Submit"
+            class="text-white bg-primary hover:bg-primary-hover focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        />
+        <a
+            type="button"
+            value="Cancel"
+            class="text-primary hover:text-primary-hover text-sm w-full font-medium sm:w-auto px-5 py-2.5 text-center"
+            href='{% url "todo:list"  %}'
+            >Cancel</a
+        >
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,3 +1,43 @@
-<h2>{{todo.title}}</h2>
-<h3>{{todo.status}}</h3>
-<p>{{todo.content}}</p>
+{% extends "base.html" %} {% block content %}
+
+<div class="space-y-6 mt-10">
+    <div class="flex justify-between">
+        <h1
+            class="mb-4 text-4xl font-bold leading-none tracking-tight text-primary md:text-5xl lg:text-6xl"
+        >
+            {{todo.title}}
+        </h1>
+
+        <ul class="flex gap-4">
+            <li>
+                <a
+                href= {% url "todo:update" id=todo.id %}
+                    class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-primary focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-hover focus:z-10 focus:ring-4 focus:ring-gray-200"
+                    >Edit</a
+                >
+            </li>
+            <li>
+                <a
+                    href= {% url "todo:delete" id=todo.id %}
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                >
+                    Delete</a
+                >
+            </li>
+        </ul>
+    </div>
+
+    <p>
+        Status:
+        <span
+            class="text-primary-hover ml-4 border border-primary font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2 text-center"
+        >
+            {{todo.status}}
+        </span>
+    </p>
+    <p class="text-left border  min-h-[30vh] border-gray-100-100 py-4 rounded-lg text-gray-500">
+        {{todo.content}}
+    </p>
+</div>
+
+{% endblock content %}

@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 
 from .models import Todo
@@ -18,6 +19,9 @@ class TodoDeleteView(DeleteView):
     model = Todo
     pk_url_kwarg="id"
     template_name = "todo_delete.html"
+    
+    def get_success_url(self):
+        return reverse_lazy('todo:list')
 
 class TodoCreate(CreateView):
     model = Todo

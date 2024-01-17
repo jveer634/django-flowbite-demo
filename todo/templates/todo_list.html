@@ -100,7 +100,11 @@
     </div>
 
     {% empty %}
-    <li>No articles yet.</li>
+    <div
+        class="w-full col-span-full p-16 text-center bg-white border border-gray-200 rounded-lg shadow"
+    >
+        Your todo list is empty. Add new
+    </div>
 
     {% endfor %}
 </div>
