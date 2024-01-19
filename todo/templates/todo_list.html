@@ -20,51 +20,42 @@
     TODO LIST
 </div>
 
-{% comment %} TODO: Implementation of search and filters {% endcomment %}
-
-<form class="my-6">
+<form class="my-4">
     <label
         for="default-search"
         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
         >Search</label
     >
-    <div class="relative">
-        <div
-            class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
-        >
-            <svg
-                class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-            >
-                <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-            </svg>
-        </div>
+    <div class="flex gap-4">
         <input
             type="search"
             id="default-search"
-            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search todos..."
-            required
+            class="block w-7/12 p-4 ps-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Search title..."
+            name="search"
         />
+
+        <select
+            name="status"
+            class="block p-4 ps-10 text-md text-gray-900 border w-3/12 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+        >
+            <option value="" selected>Select Status</option>
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
         <button
             type="submit"
-            class="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-primary-hover focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2"
+            class="text-white end-2.5 w-2/12 bottom-2.5 bg-primary hover:bg-primary-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2"
         >
             Search
         </button>
     </div>
 </form>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div
+    class="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 gap-4"
+>
     {% for todo in object_list %}
 
     <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
@@ -103,7 +94,7 @@
     <div
         class="w-full col-span-full p-16 text-center bg-white border border-gray-200 rounded-lg shadow"
     >
-        Your todo list is empty. Add new
+        No todos found.
     </div>
 
     {% endfor %}
